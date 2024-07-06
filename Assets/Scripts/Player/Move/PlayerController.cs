@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool firstEnter;
     public float rhymeBoostAmount;
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿?
     private float rhymeTimer;
     private bool startRhymeTimer;
     public GameObject rhymeObject;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         HandleRhymeTimer();
         HandleSoulTimer();
     }
-    #region ï¿½ï¿½ï¿½ï¿½ï¿½×ª
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½×?
 
     private void HandleRotationInput()
     {
@@ -70,18 +70,18 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyRotation()
     {
-        float currentYAngle = transform.eulerAngles.y;
-        float targetYAngle = rotationAngle;
-        float smoothYAngle = Mathf.SmoothDampAngle(currentYAngle, targetYAngle, ref rotationSmoothSpeed, rotationSmoothTime);
+        //float currentYAngle = transform.eulerAngles.y;
+        //float targetYAngle = rotationAngle;
+        //float smoothYAngle = Mathf.SmoothDampAngle(currentYAngle, targetYAngle, ref rotationSmoothSpeed, rotationSmoothTime);
 
-        // Ö»ÐÞ¸Ä y ÖáµÄÐý×ª½Ç¶È£¬±£Áô x ºÍ z ÖáµÄÐý×ª½Ç¶È
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, smoothYAngle, transform.eulerAngles.z);
+        //// Ö»ÐÞ¸Ä y ÖáµÄÐý×ª½Ç¶È£¬±£Áô x ºÍ z ÖáµÄÐý×ª½Ç¶È
+        //transform.eulerAngles = new Vector3(transform.eulerAngles.x, smoothYAngle, transform.eulerAngles.z);
 
-        //transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref rotationSmoothSpeed, rotationSmoothTime);
+        transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref rotationSmoothSpeed, rotationSmoothTime);
     }
 
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½
+    #region ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿?
     private void Move()
     {
         currentVelocity = currentSpeed  * transform.forward;
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyFriction()
     {
-        // ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ù¶È²ï¿½Îªï¿½ã£¬ï¿½ï¿½Ó¦ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ù¶È²ï¿½Îªï¿½ã£¬ï¿½ï¿½Ó¦ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿?
         if (currentSpeed > 0)
         {
             // ï¿½ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶È·ï¿½ï¿½ï¿½ï¿½à·´
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-    #region ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    #region ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
     public void HandleShiftInput()
     {
         if(Input.GetKey(KeyCode.LeftShift))
