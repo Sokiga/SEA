@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public bool firstEnter;
     public float rhymeBoostAmount;
     #endregion
-    #region �����ʱ��
+    #region �����ʱ��?
     private float rhymeTimer;
     private bool startRhymeTimer;
     public GameObject rhymeObject;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         HandleRhymeTimer();
         HandleSoulTimer();
     }
-    #region �����ת
+    #region ������?
 
     private void HandleRotationInput()
     {
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
-    #region ����ƶ��͵�����
+    #region ����ƶ��͵�����?
     private void Move()
     {
         currentVelocity = currentSpeed  * transform.forward;
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyFriction()
     {
-        // �����ǰ�ٶȲ�Ϊ�㣬��Ӧ��Ħ����
+        // �����ǰ�ٶȲ�Ϊ�㣬��Ӧ��Ħ����?
         if (currentSpeed > 0)
         {
             // ����Ħ�����Ĵ�С�����ٶȷ����෴
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-    #region ��ҵ�������
+    #region ��ҵ�������?
     public void HandleShiftInput()
     {
         if(Input.GetKey(KeyCode.LeftShift))
