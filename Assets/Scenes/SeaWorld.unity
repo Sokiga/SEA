@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1267648572}
-  depthBeforeSubmerged: 1
+  depthBeforeSubmerged: 0.6
   displacementAmount: 3
   floaterCount: 4
   waterDrag: 0.99
@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dfa70ba47ab31e4f99183ac56028d78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 1
+  amplitude: 0.6
   length: 2
   speed: 1
   offset: 0
@@ -707,8 +707,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.38, z: 0}
-  m_LocalScale: {x: -0.15, y: 0.58593756, z: 0.011718751}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.51, y: 0.77, z: 0.16}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 57647329}
   - {fileID: 195834051}
@@ -1154,8 +1154,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.7, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 1, z: 2}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1.67, y: 1, z: 5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1586581007}
   - {fileID: 104836209}
@@ -1188,10 +1188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181f57cc6f21c6341a8187df45671c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraControl: {fileID: 0}
-  rotationSpeed: 0
+  cameraControl: {fileID: 1315218739}
+  rotationSpeed: 90
   rotationAngle: 0
-  rotationSmoothTime: 0
+  rotationSmoothTime: 0.1
   currentSpeed: 0
   basicSpeed: 10
   frictionCoefficient: 2
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   boostDuration: 0.4
   firstEnter: 0
   rhymeBoostAmount: 0
-  rhymeObject: {fileID: 0}
+  rhymeObject: {fileID: 1858834600}
   rhymeExtraSpeed: 5
   soulAmount: 0
   isInSoulTime: 0
@@ -1373,7 +1373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1267648572}
-  depthBeforeSubmerged: 1
+  depthBeforeSubmerged: 0.6
   displacementAmount: 3
   floaterCount: 4
   waterDrag: 0.99
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   cameraRotation: {x: 0, y: 0, z: 0}
   boat: {fileID: 1267648576}
   cameraCollider: {fileID: 1315218740}
-  yThreshold: 0
+  yThreshold: 10
 --- !u!114 &1315218740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1639,7 +1639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1267648572}
-  depthBeforeSubmerged: 1
+  depthBeforeSubmerged: 0.6
   displacementAmount: 3
   floaterCount: 4
   waterDrag: 0.99
@@ -2048,7 +2048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1267648572}
-  depthBeforeSubmerged: 1
+  depthBeforeSubmerged: 0.6
   displacementAmount: 3
   floaterCount: 4
   waterDrag: 0.99
