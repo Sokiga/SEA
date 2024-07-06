@@ -10,6 +10,7 @@ public class PlayerInput : Singleton<PlayerInput>
     public Vector2 MouseDirection => inputActions.GamePlay.Look.ReadValue<Vector2>();
     public Vector2 MouseScroll => inputActions.GamePlay.MouseScroll.ReadValue<Vector2>();
     public float AxisX => MoveDirection.x;
+    public float AxisY => MoveDirection.y;
     override public void Awake()
     {
         base.Awake();
