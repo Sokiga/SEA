@@ -5,35 +5,35 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    #region Ðý×ª
+    #region ï¿½ï¿½×ª
     public float rotationSpeed;
     public float rotationAngle;
     public float rotationSmoothTime;
     private float rotationSmoothSpeed;
     #endregion
-    #region ÒÆ¶¯
+    #region ï¿½Æ¶ï¿½
     private CharacterController characterController;
+    private Rigidbody rb;
     public float currentSpeed;
     public float basicSpeed=10;
     public float frictionCoefficient=2f;
     private Vector3 currentVelocity;
-    public Rigidbody rigidbody;
-    //public float nitroBoostMultiplier = 2.0f; // µªÆø¼ÓËÙ±¶Êý
-    //public float nitroDuration = 2.0f; // µªÆø³ÖÐøÊ±¼ä
+    //public float nitroBoostMultiplier = 2.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½
+    //public float nitroDuration = 2.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     #endregion
-    #region ³¤°´¿Õ¸ñ
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½Õ¸ï¿½
     public float spaceTimer;
     public float boostDuration=0.4f;
     public bool firstEnter;
     public float rhymeBoostAmount;
     #endregion
-    #region ½Ú×à¼ÆÊ±Æ÷
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     private float rhymeTimer;
     private bool startRhymeTimer;
     public GameObject rhymeObject;
     public float rhymeExtraSpeed = 5f;
     #endregion
-    #region º£Áé
+    #region ï¿½ï¿½ï¿½ï¿½
     public float soulAmount;
     public bool isInSoulTime;
     public float soulExtraSpeed = 4f;
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         HandleRhymeTimer();
         HandleSoulTimer();
     }
-    #region Íæ¼ÒÐý×ª
+    #region ï¿½ï¿½ï¿½ï¿½ï¿½×ª
 
     private void HandleRotationInput()
     {
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
         if (input.x != 0&&PlayerInput.instance.MouseDirection.x==0)
         {
-            // °´ÏÂD¼üÊ±Ë³Ê±ÕëÐý×ª£¬°´ÏÂA¼üÊ±ÄæÊ±ÕëÐý×ª
+            // ï¿½ï¿½ï¿½ï¿½Dï¿½ï¿½Ê±Ë³Ê±ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½Ê±ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½×ª
             rotationAngle += input.x * rotationSpeed * Time.deltaTime;
         }
     }
@@ -74,20 +74,20 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
-    #region Íæ¼ÒÒÆ¶¯ºÍµþ½Ú×à
+    #region ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿½
     private void Move()
     {
         currentVelocity = currentSpeed  * transform.forward;
-        rigidbody.AddForce(currentVelocity);
+        characterController.Move(currentVelocity*Time.deltaTime);
         //characterController.Move(currentVelocity*Time.deltaTime);
         //characterController.Move(currentVelocity*Time.deltaTime);
     }
     private void ApplyFriction()
     {
-        // Èç¹ûµ±Ç°ËÙ¶È²»ÎªÁã£¬ÔòÓ¦ÓÃÄ¦²ÁÁ¦
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ù¶È²ï¿½Îªï¿½ã£¬ï¿½ï¿½Ó¦ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½
         if (currentSpeed > 0)
         {
-            // ¼ÆËãÄ¦²ÁÁ¦µÄ´óÐ¡£¬ÓëËÙ¶È·½ÏòÏà·´
+            // ï¿½ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶È·ï¿½ï¿½ï¿½ï¿½à·´
             currentSpeed = Mathf.Clamp(currentSpeed - frictionCoefficient * Time.deltaTime, 0, currentSpeed);
         }
     }
@@ -103,7 +103,8 @@ public class PlayerController : MonoBehaviour
                     currentSpeed = basicSpeed;
 
                     currentVelocity = currentSpeed * transform.forward;
-                    rigidbody.velocity = currentVelocity;
+
+                    rb.velocity = currentVelocity;
 
                     firstEnter = false;
                     if (rhymeBoostAmount == 0)
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour
                         if (rhymeTimer >= 0.6f && rhymeTimer <= 1.4f)
                         {
                            
-                            rigidbody.velocity += rhymeExtraSpeed * transform.forward;
+                            //GetComponent<Rigidbody>().velocity += rhymeExtraSpeed * transform.forward;
 
                             rhymeObject.SetActive(true);
                             rhymeBoostAmount++;
@@ -152,7 +153,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-    #region Íæ¼ÒµªÆø¼ÓËÙ
+    #region ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public void HandleShiftInput()
     {
         if(Input.GetKey(KeyCode.LeftShift))
@@ -162,8 +163,8 @@ public class PlayerController : MonoBehaviour
                 soulAmount -= 1;
                 isInSoulTime = true;
                 currentSpeed += soulExtraSpeed;
-                //¼ÓËÙ
-                //¿ªÊ¼¼ÆÊ±Æ÷,ÒòÎª5sÄÚ¿Ï¶¨±»Ä¦²ÁÁ¦ÅªÍêÁË£¬¾ÍÃ»±ØÒª
+                //ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½Ê¼ï¿½ï¿½Ê±ï¿½ï¿½,ï¿½ï¿½Îª5sï¿½Ú¿Ï¶ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½Åªï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Òª
             }
         }
     }

@@ -28,9 +28,6 @@ public class CameraControl : MonoBehaviour
     public Transform boat;
     #endregion
 
-    #region 碰撞
-    public CameraCollider cameraCollider;
-    #endregion
 
     #region Y轴阈值控制
     public float yThreshold; // 添加y轴变化阈值
@@ -41,7 +38,6 @@ public class CameraControl : MonoBehaviour
     {
         lookTarget = GameObject.FindWithTag("CameraTarget").transform;
         boat = GameObject.FindWithTag("Boat").transform;
-        cameraCollider = GetComponent<CameraCollider>();
         lastPlayerYPos = lookTarget.position.y;
     }
 
@@ -66,7 +62,7 @@ public class CameraControl : MonoBehaviour
         CameraInput();
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         UpdateCameraRotation();
         UpdateCameraPos();
@@ -110,19 +106,6 @@ public class CameraControl : MonoBehaviour
     // 更新相机位置
     private void UpdateCameraPos()
     {
-        float cameraColliderOffset = cameraCollider.UpdateCameraCollider();
-        if (cameraColliderOffset != 0)
-        {
-            currentOffset = Mathf.Clamp(currentOffset + cameraColliderOffset, 0.8f, 2f);
-        }
-        else
-        {
-            // 没有检测到任何障碍物时，逐渐恢复到 playerOffset
-            currentOffset = Mathf.Clamp(
-                Mathf.Lerp(currentOffset, playerOffset, colliderSmoothSpeed * Time.deltaTime),
-                0.8f, playerOffset);
-        }
-
         // 计算玩家y轴位置变化
         float playerYPos = lookTarget.position.y;
         float yDifference = Mathf.Abs(playerYPos - lastPlayerYPos);
@@ -138,7 +121,7 @@ public class CameraControl : MonoBehaviour
         }
 
         // 更新相机位置
-        var newPos = new Vector3(lookTarget.position.x, playerYPos, lookTarget.position.z) + (-transform.forward * currentOffset);
+        var newPos = new Vector3(lookTarget.position.x, playerYPos, lookTarget.position.z) + (-transform.forward * playerOffset);
         transform.position = Vector3.Lerp(transform.position, newPos, posSmoothSpeed * Time.deltaTime);
     }
 }
