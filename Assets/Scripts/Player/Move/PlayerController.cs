@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     #region 节奏计时器
     private float rhymeTimer;
     private bool startRhymeTimer;
+    public GameObject rhymeObject;
+    public float rhymeExtraSpeed = 5f;
     #endregion
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
         Move();
         ApplyFriction();
         HandleSpace();
+        HandleRhymeTimer();
     }
     #region 玩家旋转
 
@@ -79,16 +82,30 @@ public class PlayerController : MonoBehaviour
     }
     private void HandleSpace()
     {
-        if(PlayerInput.instance.spacePerform)
+        if (PlayerInput.instance.spacePerform)
         {
             spaceTimer += Time.deltaTime;
-            if(spaceTimer>boostDuration)
+            if (spaceTimer > boostDuration)
             {
-                if (PlayerInput.instance.MoveDirection.y > 0&&firstEnter)
+                if (PlayerInput.instance.MoveDirection.y > 0 && firstEnter)
                 {
                     currentSpeed = basicSpeed;
                     firstEnter = false;
-                    startRhymeTimer=true;
+                    if (rhymeBoostAmount == 0)
+                    {
+                        rhymeBoostAmount++;
+                        startRhymeTimer = true;
+                    }
+                    else
+                    {
+                        if (rhymeTimer >= 0.6f && rhymeTimer <= 1.4f)
+                        {
+                            currentSpeed += rhymeExtraSpeed;
+                            rhymeObject.SetActive(true);
+                            rhymeBoostAmount++;
+                            rhymeTimer = 0f;
+                        }
+                    }
                 }
             }
         }
@@ -103,30 +120,17 @@ public class PlayerController : MonoBehaviour
         if (startRhymeTimer)
         {
             rhymeTimer += Time.deltaTime;
-
-            // 在划桨计时器范围内
-            if (rhymeTimer >= 0.6f && rhymeTimer <= 1.4f)
-            {
-                // 划桨加成逻辑
-                if (rhymeBoostAmount == 0)
-                {
-                    rhymeBoostAmount++;
-                    // 这里可以开始加速逻辑，例如增加移动速度或者设置标志
-                    currentSpeed += 2.0f; // 假设加速2m/s
-                }
-            }
-
-            // 如果划桨计时器超过指定时间，结束划桨加成
             if (rhymeTimer > 1.4f)
             {
                 startRhymeTimer = false;
                 rhymeTimer = 0f;
-                rhymeBoostAmount = 0;
+                rhymeBoostAmount = 0f;
+                rhymeObject.SetActive(false);
+
             }
         }
         else
         {
-            // 如果未开始划桨计时器，重置计时器
             rhymeTimer = 0f;
         }
     }
