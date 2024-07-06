@@ -35,7 +35,7 @@ public class DialogManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // 检测鼠标左键单击
+        if (Input.GetKeyDown(KeyCode.Space)) // 按下空格
         {
             ShowDialogRow();
         }
