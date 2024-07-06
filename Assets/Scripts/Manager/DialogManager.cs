@@ -22,11 +22,14 @@ public class DialogManager : MonoBehaviour
     public bool isScrolling;
     private float textSpeed = 0.05f;
 
-
-
     public void Awake()
     {
         ReadText(dialogDataFile);
+        //ShowDialogRow();
+    }
+
+    public void OnEnable()
+    {
         ShowDialogRow();
     }
 
@@ -61,9 +64,11 @@ public class DialogManager : MonoBehaviour
 
                 break;//找到要执行的行之后跳出循环
             }
-            else if(cells[0] == "END")
+            else if(cells[0] == "END" && int.Parse(cells[1]) == dialogIndex)
             {
+                dialogIndex = int.Parse(cells[3]);//更新下一次要跳转到的序号
                 this.gameObject.SetActive(false);
+                break;
             }
         }
     }
