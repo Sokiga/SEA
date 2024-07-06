@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     #region Ðý×ª
     public CameraControl cameraControl;
-    public float mouseRotationSpeed;
     public float rotationSpeed;
     public float rotationAngle;
     public float rotationSmoothTime;
