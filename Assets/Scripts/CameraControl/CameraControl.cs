@@ -60,12 +60,14 @@ public class CameraControl : MonoBehaviour
     private void Update()
     {
         CameraInput();
+        UpdateCameraRotation();
+        UpdateCameraPos();
     }
 
     private void FixedUpdate()
     {
-        UpdateCameraRotation();
-        UpdateCameraPos();
+        //UpdateCameraRotation();
+        //UpdateCameraPos();
     }
 
     // 检查鼠标的输入
