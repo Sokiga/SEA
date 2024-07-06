@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private float rotationSmoothSpeed;
     #endregion
     #region 移动
-    public CharacterController characterController;
+    private CharacterController characterController;
     public float currentSpeed;
     public float basicSpeed=10;
     public float frictionCoefficient=2f;
@@ -33,6 +33,13 @@ public class PlayerController : MonoBehaviour
     public GameObject rhymeObject;
     public float rhymeExtraSpeed = 5f;
     #endregion
+    #region 海灵
+    public float soulAmount;
+    public bool isInSoulTime;
+    public float soulExtraSpeed = 4f;
+    public float soulTimer;
+    public float soulDuration = 5f;
+    #endregion
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -45,6 +52,7 @@ public class PlayerController : MonoBehaviour
         ApplyFriction();
         HandleSpace();
         HandleRhymeTimer();
+        HandleSoulTimer();
     }
     #region 玩家旋转
 
@@ -65,11 +73,12 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
-    #region 玩家移动
+    #region 玩家移动和叠节奏
     private void Move()
     {
         currentVelocity = currentSpeed  * transform.forward;
         characterController.Move(currentVelocity*Time.deltaTime);
+        //characterController.Move(currentVelocity*Time.deltaTime);
     }
     private void ApplyFriction()
     {
@@ -77,7 +86,7 @@ public class PlayerController : MonoBehaviour
         if (currentSpeed > 0)
         {
             // 计算摩擦力的大小，与速度方向相反
-            currentSpeed =Mathf.Clamp(currentSpeed-frictionCoefficient*Time.deltaTime, 0, currentSpeed);
+            currentSpeed = Mathf.Clamp(currentSpeed - frictionCoefficient * Time.deltaTime, 0, currentSpeed);
         }
     }
     private void HandleSpace()
@@ -132,6 +141,38 @@ public class PlayerController : MonoBehaviour
         else
         {
             rhymeTimer = 0f;
+        }
+    }
+    #endregion
+    #region 玩家氮气加速
+    public void HandleShiftInput()
+    {
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            if(!isInSoulTime&&soulAmount>0)
+            {
+                soulAmount -= 1;
+                isInSoulTime = true;
+                currentSpeed += soulExtraSpeed;
+                //加速
+                //开始计时器,因为5s内肯定被摩擦力弄完了，就没必要
+            }
+        }
+    }
+    public void HandleSoulTimer()
+    {
+        if(isInSoulTime)
+        {
+            soulTimer += Time.deltaTime;
+            if(soulTimer >soulDuration)
+            {
+                soulTimer = 0f;
+                isInSoulTime = false;
+            }
+        }
+        else
+        {
+            soulTimer = 0f;
         }
     }
     #endregion
