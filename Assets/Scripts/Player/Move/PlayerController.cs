@@ -14,11 +14,11 @@ public class PlayerController : MonoBehaviour
     #endregion
     #region 移动
     private CharacterController characterController;
-    public Rigidbody rb;
     public float currentSpeed;
     public float basicSpeed=10;
     public float frictionCoefficient=2f;
     private Vector3 currentVelocity;
+    public Rigidbody rigidbody;
     //public float nitroBoostMultiplier = 2.0f; // 氮气加速倍数
     //public float nitroDuration = 2.0f; // 氮气持续时间
     #endregion
@@ -43,15 +43,15 @@ public class PlayerController : MonoBehaviour
     #endregion
     private void Awake()
     {
-        //characterController = GetComponent<CharacterController>();
-        rb = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
+        rigidbody = GetComponent<Rigidbody>();
     }
     private void Update()
     {
         HandleRotationInput();
         ApplyRotation();
         //Move();
-        //ApplyFriction();
+        ApplyFriction();
         HandleSpace();
         HandleRhymeTimer();
         HandleSoulTimer();
@@ -76,21 +76,22 @@ public class PlayerController : MonoBehaviour
 
     #endregion
     #region 玩家移动和叠节奏
-    //private void Move()
-    //{
-    //    currentVelocity = currentSpeed  * transform.forward;
-    //    rb.AddForce(currentVelocity);
-    //    //characterController.Move(currentVelocity*Time.deltaTime);
-    //}
-    //private void ApplyFriction()
-    //{
-    //    // 如果当前速度不为零，则应用摩擦力
-    //    if (currentSpeed > 0)
-    //    {
-    //        // 计算摩擦力的大小，与速度方向相反
-    //        currentSpeed = Mathf.Clamp(currentSpeed - frictionCoefficient * Time.deltaTime, 0, currentSpeed);
-    //    }
-    //}
+    private void Move()
+    {
+        currentVelocity = currentSpeed  * transform.forward;
+        rigidbody.AddForce(currentVelocity);
+        //characterController.Move(currentVelocity*Time.deltaTime);
+        //characterController.Move(currentVelocity*Time.deltaTime);
+    }
+    private void ApplyFriction()
+    {
+        // 如果当前速度不为零，则应用摩擦力
+        if (currentSpeed > 0)
+        {
+            // 计算摩擦力的大小，与速度方向相反
+            currentSpeed = Mathf.Clamp(currentSpeed - frictionCoefficient * Time.deltaTime, 0, currentSpeed);
+        }
+    }
     private void HandleSpace()
     {
         if (PlayerInput.instance.spacePerform)
@@ -101,9 +102,10 @@ public class PlayerController : MonoBehaviour
                 if (PlayerInput.instance.MoveDirection.y > 0 && firstEnter)
                 {
                     currentSpeed = basicSpeed;
+
                     currentVelocity = currentSpeed * transform.forward;
-                    Debug.Log(currentVelocity);
-                    rb.AddForce(currentVelocity*100f);
+                    rigidbody.velocity = currentVelocity;
+
                     firstEnter = false;
                     if (rhymeBoostAmount == 0)
                     {
@@ -114,7 +116,9 @@ public class PlayerController : MonoBehaviour
                     {
                         if (rhymeTimer >= 0.6f && rhymeTimer <= 1.4f)
                         {
-                            currentSpeed += rhymeExtraSpeed;
+                           
+                            rigidbody.velocity += rhymeExtraSpeed * transform.forward;
+
                             rhymeObject.SetActive(true);
                             rhymeBoostAmount++;
                             rhymeTimer = 0f;

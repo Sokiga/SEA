@@ -10,7 +10,7 @@ public class CameraControl : MonoBehaviour
     #region 镜头离玩家距离
     public float playerOffset;
     public float currentOffset;
-    private Transform lookTarget;
+    public Transform lookTarget;
     #endregion
 
     #region 各种平滑速度
