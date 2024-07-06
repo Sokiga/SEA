@@ -4,8 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Liuli.unity
-    guid: cc40073deb121054d92e995dc4d8fc8b
+  m_Scenes: []
   m_configObjects: {}
