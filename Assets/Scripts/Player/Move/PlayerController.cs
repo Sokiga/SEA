@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private float rotationSmoothSpeed;
     #endregion
     #region 移动
-    public CharacterController characterController;
+    private CharacterController characterController;
     public float currentSpeed;
     public float basicSpeed=10;
     public float frictionCoefficient=2f;
@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         currentVelocity = currentSpeed  * transform.forward;
         characterController.Move(currentVelocity*Time.deltaTime);
+        //characterController.Move(currentVelocity*Time.deltaTime);
     }
     private void ApplyFriction()
     {
@@ -85,7 +86,7 @@ public class PlayerController : MonoBehaviour
         if (currentSpeed > 0)
         {
             // 计算摩擦力的大小，与速度方向相反
-            currentSpeed =Mathf.Clamp(currentSpeed-frictionCoefficient*Time.deltaTime, 0, currentSpeed);
+            currentSpeed = Mathf.Clamp(currentSpeed - frictionCoefficient * Time.deltaTime, 0, currentSpeed);
         }
     }
     private void HandleSpace()

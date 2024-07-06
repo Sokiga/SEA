@@ -25,7 +25,7 @@ public class CameraControl : MonoBehaviour
     private Vector2 rotation;
     public Vector3 cameraRotation;
     private Vector3 smoothDampSpeed = Vector3.zero;
-    public Transform player;
+    public Transform boat;
     #endregion
 
     #region 碰撞
@@ -40,7 +40,7 @@ public class CameraControl : MonoBehaviour
     private void Awake()
     {
         lookTarget = GameObject.FindWithTag("CameraTarget").transform;
-        player = GameObject.FindWithTag("Player").transform;
+        boat = GameObject.FindWithTag("Boat").transform;
         cameraCollider = GetComponent<CameraCollider>();
         lastPlayerYPos = lookTarget.position.y;
     }
@@ -93,7 +93,7 @@ public class CameraControl : MonoBehaviour
     private void UpdateCameraRotation()
     {
 
-        Quaternion targetRotation = Quaternion.Euler(rotation.x, player.eulerAngles.y, 0f);
+        Quaternion targetRotation = Quaternion.Euler(rotation.x, boat.eulerAngles.y, 0f);
 
         // 使用球面插值来平滑旋转
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, smoothTime * Time.deltaTime);
