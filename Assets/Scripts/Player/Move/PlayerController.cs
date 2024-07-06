@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour
 {
     #region Ðý×ª
-    public CameraControl cameraControl;
     public float rotationSpeed;
     public float rotationAngle;
     public float rotationSmoothTime;
