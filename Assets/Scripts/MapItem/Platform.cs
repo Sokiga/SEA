@@ -6,7 +6,8 @@ public class Platform : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Debug.Log("有物体进来了");
+        if (collision.gameObject.CompareTag("Boat"))
         {
             collision.transform.SetParent(transform);
         }
@@ -14,7 +15,7 @@ public class Platform : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Boat"))
         {
             collision.transform.SetParent(null);
         }

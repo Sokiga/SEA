@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotatePlatform : MonoBehaviour
+public class RotatePlatform : Platform
 {
     public GameObject mainPlatform; // 长方形主平台
     public float rotationSpeed = 40f; // 旋转速度
@@ -11,7 +11,7 @@ public class RotatePlatform : MonoBehaviour
 
     private void Start()
     {
-        playerDefTransform = GameObject.FindGameObjectWithTag("Player").transform.parent;
+        playerDefTransform = GameObject.FindGameObjectWithTag("Boat").transform.parent;
     }
 
     void Update()
