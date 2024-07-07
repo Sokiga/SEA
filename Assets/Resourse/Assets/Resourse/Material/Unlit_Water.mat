@@ -36,14 +36,14 @@ Material:
     - _Distance: 322.08
     - _FoamAmount: 4.1
     - _FoamCutoff: 3
-    - _Scale: 53.24
+    - _Scale: 500
     - _Smoothness: 6.12
     - _SpecInt: 7.13
     - _SpecPow: 3.67
-    - _Speed: 0.19
+    - _Speed: 0.01
     m_Colors:
     - _Color_01: {r: 0.121568635, g: 0.16470589, b: 0.3372549, a: 1}
-    - _Color_02: {r: 0.24705884, g: 0.3254902, b: 0.8078432, a: 0.972549}
-    - _Color_Foam: {r: 0.6497419, g: 0.82126427, b: 0.8773585, a: 1}
+    - _Color_02: {r: 0.16862746, g: 0.3019608, b: 0.5803922, a: 0.972549}
+    - _Color_Foam: {r: 0.47058827, g: 0.7176471, b: 0.6862745, a: 1}
     - _Color_Spec: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
