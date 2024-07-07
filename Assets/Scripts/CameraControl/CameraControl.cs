@@ -102,7 +102,7 @@ public class CameraControl : MonoBehaviour
     {
         var offset = context.ReadValue<Vector2>().y;
         playerOffset -= offset * mouseScrollSpeed * 0.01f;
-        playerOffset = Mathf.Clamp(playerOffset, 1f, 5f);
+        playerOffset = Mathf.Clamp(playerOffset, 4f, 10f);
     }
 
     // 更新相机位置

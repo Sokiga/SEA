@@ -7,9 +7,12 @@ public class RippleEffect : MonoBehaviour
     public float forceMagnitude = 10f; // 施加给物体的力的大小
     public ParticleSystem rippleParticleSystem; // 涟漪粒子系统
     public string interactableTag = "Interactable"; // 可交互物体的标签
+    public float shortPressThreshold = 0.2f; // 短按阈值（秒）
 
     private bool isExpanding = false;
     private Vector3 initialScale;
+    private float pressStartTime;
+    private bool isPressing = false;
 
     private void Start()
     {
@@ -24,7 +27,18 @@ public class RippleEffect : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            StartRipple();
+            pressStartTime = Time.time;
+            isPressing = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            isPressing = false;
+            float pressDuration = Time.time - pressStartTime;
+
+            if (pressDuration < shortPressThreshold)
+            {
+                StartRipple();
+            }
         }
     }
 
@@ -32,7 +46,7 @@ public class RippleEffect : MonoBehaviour
     {
         transform.localScale = initialScale;
         isExpanding = true;
-        //rippleParticleSystem.Play();
+        rippleParticleSystem.Play();
     }
 
     private void Expand()
@@ -42,7 +56,7 @@ public class RippleEffect : MonoBehaviour
         if (transform.localScale.x >= maxSize)
         {
             isExpanding = false;
-            //rippleParticleSystem.Stop();
+            rippleParticleSystem.Stop();
             transform.localScale = initialScale;
         }
     }
@@ -60,5 +74,6 @@ public class RippleEffect : MonoBehaviour
         }
     }
 }
+
 
 

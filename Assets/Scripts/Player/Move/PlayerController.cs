@@ -43,6 +43,10 @@ public class PlayerController : MonoBehaviour
     public bool isInGuideArea;
     public Vector3 environmentVelocity;
     #endregion
+    #region oar
+    public Rotater oarLeft;
+    public Rotater oarRight;
+    #endregion
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -66,6 +70,15 @@ public class PlayerController : MonoBehaviour
         {
             // ����D��ʱ˳ʱ����ת������A��ʱ��ʱ����ת
             rotationAngle += input.x * rotationSpeed * Time.deltaTime;
+            if(input.x < 0)
+            {
+                oarRight.RotateOnce();
+            }
+            else
+            {
+                oarLeft.RotateOnce();
+            }
+
         }
     }
     private void ApplyRotation()
@@ -128,6 +141,8 @@ public class PlayerController : MonoBehaviour
                             rhymeTimer = 0f;
                         }
                     }
+                    oarLeft.RotateOnce();
+                    oarRight.RotateOnce();
                 }
             }
         }

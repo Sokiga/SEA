@@ -21,15 +21,14 @@ public class PlayerInput : Singleton<PlayerInput>
     }
     private void Update()
     {
-        if(sign.isInDialog)
-        {
-            Debug.Log(1);
-            DisableGamePlay();
-        }
-        else
-        {
-            EnableGamePlay();
-        }
+        //if(sign.isInDialog)
+        //{
+        //    DisableGamePlay();
+        //}
+        //else
+        //{
+        //    EnableGamePlay();
+        //}
     }
     public void EnableGamePlay()
     {
