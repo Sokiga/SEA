@@ -1,5 +1,76 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &862731790490720539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6226815776285681817}
+  - component: {fileID: 6393744740781868282}
+  - component: {fileID: 6665369138495657027}
+  m_Layer: 0
+  m_Name: Ripple
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6226815776285681817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862731790490720539}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8914727617455670323}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6393744740781868282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862731790490720539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc32cfcc473b00847a025e2cde6dc512, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expansionSpeed: 5
+  maxSize: 50
+  forceMagnitude: 10
+  rippleParticleSystem: {fileID: 0}
+  interactableTag: Interactable
+--- !u!135 &6665369138495657027
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862731790490720539}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.29
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1756707320386391681
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +348,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2400194941277676708}
+  - {fileID: 6226815776285681817}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6601025975573563560
@@ -341,14 +413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181f57cc6f21c6341a8187df45671c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraControl: {fileID: 0}
   rotationSpeed: 90
   rotationAngle: 0
   rotationSmoothTime: 0.1
   currentSpeed: 0
   basicSpeed: 10
   frictionCoefficient: 2
-  rigidbody: {fileID: 0}
   spaceTimer: 0
   boostDuration: 0.4
   firstEnter: 0
@@ -360,6 +430,8 @@ MonoBehaviour:
   soulExtraSpeed: 4
   soulTimer: 0
   soulDuration: 5
+  isInGuideArea: 0
+  environmentVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &2812098209939102476
 MonoBehaviour:
   m_ObjectHideFlags: 0
