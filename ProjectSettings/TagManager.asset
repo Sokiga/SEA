@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CameraTarget
   - Boat
+  - Interactable
   layers:
   - Default
   - TransparentFX
