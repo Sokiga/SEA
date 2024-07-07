@@ -9,7 +9,7 @@ public class DialogArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Boat"))
         {
             Debug.Log("玩家进入剧情点");
             dialogManager.dialogIndex = dialogIndexAtThisPoint;
