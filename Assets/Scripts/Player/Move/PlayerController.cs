@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     #endregion
     #region º£Áé
     public float soulAmount;
+    public float maxSoulAmount=2f;
     public bool isInSoulTime;
     public float soulExtraSpeed = 4f;
     public float soulTimer;
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
         HandleRhymeTimer();
         HandleSoulTimer();
     }
-    #region ï¿½ï¿½ï¿½ï¿½ï¿½×?
+    #region Ðý×ª
 
     private void HandleRotationInput()
     {
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿?
+    #region ÒÆ¶¯
     private void Move()
     {
         currentVelocity = currentSpeed  * transform.forward+environmentVelocity;
@@ -172,7 +173,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-    #region ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
+    #region º£Áé
     public void HandleShiftInput()
     {
         if(Input.GetKey(KeyCode.LeftShift))
@@ -182,8 +183,6 @@ public class PlayerController : MonoBehaviour
                 soulAmount -= 1;
                 isInSoulTime = true;
                 currentSpeed += soulExtraSpeed;
-                //ï¿½ï¿½ï¿½ï¿½
-                //ï¿½ï¿½Ê¼ï¿½ï¿½Ê±ï¿½ï¿½,ï¿½ï¿½Îª5sï¿½Ú¿Ï¶ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½Åªï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Òª
             }
         }
     }
@@ -202,6 +201,10 @@ public class PlayerController : MonoBehaviour
         {
             soulTimer = 0f;
         }
+    }
+    public void AddSoulAmount(int amount)
+    {
+        soulAmount = Mathf.Clamp(soulAmount+amount, 0f, maxSoulAmount);
     }
     #endregion
 }
