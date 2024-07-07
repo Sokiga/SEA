@@ -56,18 +56,17 @@ public class DialogManager : MonoBehaviour
             string[] cells = dialogRows[i].Split(',');
 
             //如果是上一个跳转过来的序号，那么就执行
-            if (cells[0] == "#" && int.Parse(cells[1]) == dialogIndex)
-            {
-                dialogText.text = ParseAndColorizeString(cells[2]);
-
-                dialogIndex = int.Parse(cells[3]);//更新下一次要跳转到的序号
-
-                break;//找到要执行的行之后跳出循环
-            }
-            else if(cells[0] == "END" && int.Parse(cells[1]) == dialogIndex)
+            if(int.Parse(cells[1]) == dialogIndex)
             {
                 dialogIndex = int.Parse(cells[3]);//更新下一次要跳转到的序号
-                this.gameObject.SetActive(false);
+                if (cells[0] == "#")
+                {
+                    dialogText.text = ParseAndColorizeString(cells[2]);
+                }
+                else if(cells[0] == "END")
+                {
+                    this.gameObject.SetActive(false);
+                }
                 break;
             }
         }
