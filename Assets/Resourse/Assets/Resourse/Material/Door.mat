@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_Tail 1
-  m_Shader: {fileID: 4800000, guid: b0df20e647a2c1f4d92233dd5e0d1c2c, type: 3}
+  m_Name: Door
+  m_Shader: {fileID: 4800000, guid: bc101e0ed1876ab44ba7353a8b83c51b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -23,22 +23,12 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _FoamTex:
-        m_Texture: {fileID: 2800000, guid: 13989f7a5dd13aa4eb3a4b57627c80da, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bdda1b53ca35889458f8f2308b4e2ec8, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: cfb891200bc88cc4e9ed0bb78eefefee, type: 3}
+        m_Texture: {fileID: 2800000, guid: 45caaab041dea4a489975ba48dc0d6c9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _Scale: 2.93
-    - _Speed: 2.52
+    m_Floats: []
     m_Colors:
-    - _Color_Foam: {r: 0.6509434, g: 0.61102706, b: 0.61102706, a: 1}
+    - _AmbientCol: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
