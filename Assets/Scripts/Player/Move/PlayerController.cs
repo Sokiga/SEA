@@ -5,14 +5,13 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    #region ��ת
+    #region ��ת
     public float rotationSpeed;
     public float rotationAngle;
     public float rotationSmoothTime;
     private float rotationSmoothSpeed;
     #endregion
-    #region �ƶ�
-    private CharacterController characterController;
+    #region �ƶ�
     private Rigidbody rb;
     public float currentSpeed;
     public float basicSpeed=10;
@@ -40,16 +39,19 @@ public class PlayerController : MonoBehaviour
     public float soulTimer;
     public float soulDuration = 5f;
     #endregion
+    #region guide
+    public bool isInGuideArea;
+    public Vector3 environmentVelocity;
+    #endregion
     private void Awake()
     {
-        characterController = GetComponent<CharacterController>();
         rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
         HandleRotationInput();
         ApplyRotation();
-        //Move();
+        Move();
         ApplyFriction();
         HandleSpace();
         HandleRhymeTimer();
@@ -60,8 +62,6 @@ public class PlayerController : MonoBehaviour
     private void HandleRotationInput()
     {
         Vector2 input = PlayerInput.instance.MoveDirection;
-        
-
         if (input.x != 0&&PlayerInput.instance.MouseDirection.x==0)
         {
             // ����D��ʱ˳ʱ����ת������A��ʱ��ʱ����ת
@@ -84,10 +84,12 @@ public class PlayerController : MonoBehaviour
     #region ����ƶ��͵�����?
     private void Move()
     {
-        currentVelocity = currentSpeed  * transform.forward;
-        characterController.Move(currentVelocity*Time.deltaTime);
-        //characterController.Move(currentVelocity*Time.deltaTime);
-        //characterController.Move(currentVelocity*Time.deltaTime);
+        currentVelocity = currentSpeed  * transform.forward+environmentVelocity;
+        rb.velocity = currentVelocity;
+    }
+    public void ChangeEnvironmentVelocity(Vector3 velocity)
+    {
+        environmentVelocity = velocity;
     }
     private void ApplyFriction()
     {
@@ -107,12 +109,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (PlayerInput.instance.MoveDirection.y > 0 && firstEnter)
                 {
-                    currentSpeed = basicSpeed;
-
-                    currentVelocity = currentSpeed * transform.forward;
-
-                    rb.velocity = currentVelocity;
-
+                    currentSpeed = basicSpeed;                 
                     firstEnter = false;
                     if (rhymeBoostAmount == 0)
                     {
@@ -123,9 +120,9 @@ public class PlayerController : MonoBehaviour
                     {
                         if (rhymeTimer >= 0.6f && rhymeTimer <= 1.4f)
                         {
-                           
-                            //GetComponent<Rigidbody>().velocity += rhymeExtraSpeed * transform.forward;
 
+                            //GetComponent<Rigidbody>().velocity += rhymeExtraSpeed * transform.forward;
+                            currentSpeed += rhymeExtraSpeed;
                             rhymeObject.SetActive(true);
                             rhymeBoostAmount++;
                             rhymeTimer = 0f;
