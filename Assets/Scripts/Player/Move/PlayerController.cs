@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     public Rotater oarLeft;
     public Rotater oarRight;
     #endregion
+    public bool useMove;
+    public bool useRotation;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -67,11 +69,11 @@ public class PlayerController : MonoBehaviour
     private void HandleRotationInput()
     {
         Vector2 input = PlayerInput.instance.MoveDirection;
-        if (input.x != 0&&PlayerInput.instance.MouseDirection.x==0)
+        if (input.x != 0)
         {
-            // ����D��ʱ˳ʱ����ת������A��ʱ��ʱ����ת
+            Debug.Log(1);
             rotationAngle += input.x * rotationSpeed * Time.deltaTime;
-            if(input.x < 0)
+            if (input.x < 0)
             {
                 oarRight.RotateOnce();
             }
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyRotation()
     {
+        if (!useRotation) return;
         float currentYAngle = transform.eulerAngles.y;
         float targetYAngle = rotationAngle;
         float smoothYAngle = Mathf.SmoothDampAngle(currentYAngle, targetYAngle, ref rotationSmoothSpeed, rotationSmoothTime);
@@ -98,6 +101,7 @@ public class PlayerController : MonoBehaviour
     #region �ƶ�
     private void Move()
     {
+        if (!useMove) return;
         currentVelocity = currentSpeed  * transform.forward+environmentVelocity;
         rb.velocity = currentVelocity;
     }
