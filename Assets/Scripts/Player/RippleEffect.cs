@@ -32,7 +32,7 @@ public class RippleEffect : MonoBehaviour
     {
         transform.localScale = initialScale;
         isExpanding = true;
-        rippleParticleSystem.Play();
+        //rippleParticleSystem.Play();
     }
 
     private void Expand()
@@ -42,7 +42,7 @@ public class RippleEffect : MonoBehaviour
         if (transform.localScale.x >= maxSize)
         {
             isExpanding = false;
-            rippleParticleSystem.Stop();
+            //rippleParticleSystem.Stop();
             transform.localScale = initialScale;
         }
     }

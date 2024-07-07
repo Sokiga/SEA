@@ -28,7 +28,7 @@ public class Sign : MonoBehaviour
         //如果是可互动的物体，就激活这个项目
         signSprite.GetComponent<Image>().enabled = canPress;
 
-        if (canPress && Input.GetKeyDown(KeyCode.Space))
+        if (canPress && Input.GetKeyDown(KeyCode.F))
             targetItem.TriggerAction();
     }
 

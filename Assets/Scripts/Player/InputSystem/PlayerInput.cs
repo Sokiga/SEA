@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInput : Singleton<PlayerInput>
 {
+    public Sign sign;
     public InputActions inputActions;
     public bool Move => inputActions.GamePlay.Move.ReadValue<Vector2>() != Vector2.zero;
     public bool spacePerform => inputActions.GamePlay.Space.IsPressed();
@@ -17,6 +18,18 @@ public class PlayerInput : Singleton<PlayerInput>
         base.Awake();
         inputActions = new InputActions();
         EnableGamePlay();
+    }
+    private void Update()
+    {
+        if(sign.isInDialog)
+        {
+            Debug.Log(1);
+            DisableGamePlay();
+        }
+        else
+        {
+            EnableGamePlay();
+        }
     }
     public void EnableGamePlay()
     {
