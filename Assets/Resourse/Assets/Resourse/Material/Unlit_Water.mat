@@ -33,7 +33,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Distance: 2.49
+    - _Distance: 56.4
     - _FoamAmount: 4.1
     - _FoamCutoff: 3
     - _Scale: 53.24
