@@ -6,7 +6,8 @@ public class Rotater : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform point;
-    public float speed = 0;
+    public float Xspeed = 0;
+    public float Zspeed = 0;
     void Start()
     {
         
@@ -15,6 +16,7 @@ public class Rotater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(point.position, new Vector3(1,0,0),speed);
+        transform.RotateAround(point.position, new Vector3(1,0,0),Xspeed);
+        transform.RotateAround(point.position, new Vector3(0,1,0),Zspeed);
     }
 }
