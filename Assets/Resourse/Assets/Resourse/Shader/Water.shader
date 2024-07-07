@@ -11,6 +11,7 @@ Shader "Unlit/Water"
         _Scale("大小",float) = 1
         _Speed("流速",float) = 1
         _Color_Foam("水花颜色",color) = (1.0,1.0,1.0,1.0)
+        _Color_Spec("高光颜色",color) = (1.0,1.0,1.0,1.0)
         _SpecInt("高光强度",float) = 5
         _SpecPow("高光次幂",float) = 10
         _Smoothness("光滑度",float) = 10
@@ -34,6 +35,8 @@ Shader "Unlit/Water"
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+			#include "Lighting.cginc"
+            #include "AutoLight.cginc"
 
             struct appdata
             {
@@ -58,6 +61,7 @@ Shader "Unlit/Water"
             float _Speed;
             float _Distance;
             float4 _Color_Foam;
+            float4 _Color_Spec;
             float4 _SpecPow;
             float4 _SpecInt;
             float _Smoothness;
@@ -71,7 +75,7 @@ Shader "Unlit/Water"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.posWS = mul(unity_ObjectToWorld,v.vertex);
-                o.nDirWS = UnityObjectToWorldNormal(v.normal.xyz);
+                o.nDirWS = UnityObjectToWorldNormal(v.normal);
                 o.screenPos = ComputeScreenPos(o.vertex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 o.uv = (v.uv + frac(_Time.x*_Speed))*_Scale;
@@ -104,14 +108,14 @@ Shader "Unlit/Water"
                 foam = step(foam,foamTex);
                 
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                half3 spec = pow(ndoth,_SpecPow);
-                half3 specCol = lerp(col.rgb,_Color_Foam,_Smoothness);
-                half3 finalSpec = specCol *_SpecInt * spec;
+                half spec = pow(ndoth,_SpecPow);
+                
+                half3 finalSpec = _Color_Spec *_SpecInt * spec;
 
                 half3 finalCol =lerp(col.rgb,_Color_Foam,foam);
-                return half4(finalCol,col.a);
+                return half4(finalCol,1.0);
             }
             ENDCG
         }
-    }
+    }Fallback"Diffuse"
 }
