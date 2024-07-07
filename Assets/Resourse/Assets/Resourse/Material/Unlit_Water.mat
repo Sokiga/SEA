@@ -36,7 +36,7 @@ Material:
     - _Distance: 322.08
     - _FoamAmount: 4.1
     - _FoamCutoff: 3
-    - _Scale: 500
+    - _Scale: 1000
     - _Smoothness: 6.12
     - _SpecInt: 7.13
     - _SpecPow: 3.67
