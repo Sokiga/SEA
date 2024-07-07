@@ -71,10 +71,10 @@ Shader "Unlit/Tail"
                 col = clamp(col,0,7.49);
                 col = sin(col);
                 col.rgb *= foamTex;
-                col = step(0.5,col);
+                col = step(0.5,col)*i.color;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return half4(col.xxxx);
+                return half4(col,i.color.a);
             }
             ENDCG
         }
