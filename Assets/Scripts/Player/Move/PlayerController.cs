@@ -20,19 +20,19 @@ public class PlayerController : MonoBehaviour
     //public float nitroBoostMultiplier = 2.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½
     //public float nitroDuration = 2.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½ï¿½Õ¸ï¿½
+    #region ÒÆ¶¯
     public float spaceTimer;
     public float boostDuration=0.4f;
     public bool firstEnter;
     public float rhymeBoostAmount;
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿?
+    #region ½Ú×à
     private float rhymeTimer;
     private bool startRhymeTimer;
     public GameObject rhymeObject;
     public float rhymeExtraSpeed = 5f;
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½
+    #region º£Áé
     public float soulAmount;
     public bool isInSoulTime;
     public float soulExtraSpeed = 4f;
