@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
-    #region Ðý×ª
+    #region ï¿½ï¿½×ª
     public float rotationSpeed;
     public float rotationAngle;
     public float rotationSmoothTime;
     private float rotationSmoothSpeed;
     #endregion
-    #region ÒÆ¶¯
+    #region ï¿½Æ¶ï¿½
     private Rigidbody rb;
     public float currentSpeed;
     public float basicSpeed=10;
@@ -20,19 +20,19 @@ public class PlayerController : MonoBehaviour
     //public float nitroBoostMultiplier = 2.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½
     //public float nitroDuration = 2.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     #endregion
-    #region ÒÆ¶¯
+    #region ï¿½Æ¶ï¿½
     public float spaceTimer;
     public float boostDuration=0.4f;
     public bool firstEnter;
     public float rhymeBoostAmount;
     #endregion
-    #region ½Ú×à
+    #region ï¿½ï¿½ï¿½ï¿½
     private float rhymeTimer;
     private bool startRhymeTimer;
     public GameObject rhymeObject;
     public float rhymeExtraSpeed = 5f;
     #endregion
-    #region º£Áé
+    #region ï¿½ï¿½ï¿½ï¿½
     public float soulAmount;
     public float maxSoulAmount=2f;
     public bool isInSoulTime;
@@ -64,14 +64,13 @@ public class PlayerController : MonoBehaviour
         HandleRhymeTimer();
         HandleSoulTimer();
     }
-    #region Ðý×ª
+    #region ï¿½ï¿½×ª
 
     private void HandleRotationInput()
     {
         Vector2 input = PlayerInput.instance.MoveDirection;
         if (input.x != 0)
         {
-            Debug.Log(1);
             rotationAngle += input.x * rotationSpeed * Time.deltaTime;
             if (input.x < 0)
             {
@@ -91,14 +90,14 @@ public class PlayerController : MonoBehaviour
         float targetYAngle = rotationAngle;
         float smoothYAngle = Mathf.SmoothDampAngle(currentYAngle, targetYAngle, ref rotationSmoothSpeed, rotationSmoothTime);
 
-        // Ö»ÐÞ¸Ä y ÖáµÄÐý×ª½Ç¶È£¬±£Áô x ºÍ z ÖáµÄÐý×ª½Ç¶È
+        // Ö»ï¿½Þ¸ï¿½ y ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½Ç¶È£ï¿½ï¿½ï¿½ï¿½ï¿½ x ï¿½ï¿½ z ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½Ç¶ï¿½
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, smoothYAngle, transform.eulerAngles.z);
 
         //transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref rotationSmoothSpeed, rotationSmoothTime);
     }
 
     #endregion
-    #region ÒÆ¶¯
+    #region ï¿½Æ¶ï¿½
     private void Move()
     {
         if (!useMove) return;
@@ -111,7 +110,7 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyFriction()
     {
-        // ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ù¶È²ï¿½Îªï¿½ã£¬ï¿½ï¿½Ó¦ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿?
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Ù¶È²ï¿½Îªï¿½ã£¬ï¿½ï¿½Ó¦ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½?
         if (currentSpeed > 0)
         {
             // ï¿½ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶È·ï¿½ï¿½ï¿½ï¿½à·´
@@ -177,7 +176,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-    #region º£Áé
+    #region ï¿½ï¿½ï¿½ï¿½
     public void HandleShiftInput()
     {
         if(Input.GetKey(KeyCode.LeftShift))
