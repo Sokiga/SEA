@@ -94,7 +94,7 @@ public class WaterFloat : MonoBehaviour
         if (pointUnderWater)
         {
             //attach to water surface
-            TargetUp = Vector3.SmoothDamp(transform.up, TargetUp, ref smoothVectorRotation, 0.2f);
+            TargetUp = Vector3.SmoothDamp(transform.up, TargetUp, ref smoothVectorRotation, 0.7f);
             Rigidbody.rotation = Quaternion.FromToRotation(transform.up, TargetUp) * Rigidbody.rotation;
         }
 
