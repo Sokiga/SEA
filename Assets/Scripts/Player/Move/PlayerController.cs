@@ -20,20 +20,21 @@ public class PlayerController : MonoBehaviour
     //public float nitroBoostMultiplier = 2.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù±ï¿½ï¿½ï¿½
     //public float nitroDuration = 2.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½ï¿½Õ¸ï¿½
+    #region ÒÆ¶¯
     public float spaceTimer;
     public float boostDuration=0.4f;
     public bool firstEnter;
     public float rhymeBoostAmount;
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿?
+    #region ½Ú×à
     private float rhymeTimer;
     private bool startRhymeTimer;
     public GameObject rhymeObject;
     public float rhymeExtraSpeed = 5f;
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½
+    #region º£Áé
     public float soulAmount;
+    public float maxSoulAmount=2f;
     public bool isInSoulTime;
     public float soulExtraSpeed = 4f;
     public float soulTimer;
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
         HandleRhymeTimer();
         HandleSoulTimer();
     }
-    #region ï¿½ï¿½ï¿½ï¿½ï¿½×?
+    #region Ðý×ª
 
     private void HandleRotationInput()
     {
@@ -83,18 +84,18 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyRotation()
     {
-        //float currentYAngle = transform.eulerAngles.y;
-        //float targetYAngle = rotationAngle;
-        //float smoothYAngle = Mathf.SmoothDampAngle(currentYAngle, targetYAngle, ref rotationSmoothSpeed, rotationSmoothTime);
+        float currentYAngle = transform.eulerAngles.y;
+        float targetYAngle = rotationAngle;
+        float smoothYAngle = Mathf.SmoothDampAngle(currentYAngle, targetYAngle, ref rotationSmoothSpeed, rotationSmoothTime);
 
-        //// Ö»ÐÞ¸Ä y ÖáµÄÐý×ª½Ç¶È£¬±£Áô x ºÍ z ÖáµÄÐý×ª½Ç¶È
-        //transform.eulerAngles = new Vector3(transform.eulerAngles.x, smoothYAngle, transform.eulerAngles.z);
+        // Ö»ÐÞ¸Ä y ÖáµÄÐý×ª½Ç¶È£¬±£Áô x ºÍ z ÖáµÄÐý×ª½Ç¶È
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, smoothYAngle, transform.eulerAngles.z);
 
-        transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref rotationSmoothSpeed, rotationSmoothTime);
+        //transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref rotationSmoothSpeed, rotationSmoothTime);
     }
 
     #endregion
-    #region ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Íµï¿½ï¿½ï¿½ï¿½ï¿?
+    #region ÒÆ¶¯
     private void Move()
     {
         currentVelocity = currentSpeed  * transform.forward+environmentVelocity;
@@ -172,7 +173,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-    #region ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿?
+    #region º£Áé
     public void HandleShiftInput()
     {
         if(Input.GetKey(KeyCode.LeftShift))
@@ -182,8 +183,6 @@ public class PlayerController : MonoBehaviour
                 soulAmount -= 1;
                 isInSoulTime = true;
                 currentSpeed += soulExtraSpeed;
-                //ï¿½ï¿½ï¿½ï¿½
-                //ï¿½ï¿½Ê¼ï¿½ï¿½Ê±ï¿½ï¿½,ï¿½ï¿½Îª5sï¿½Ú¿Ï¶ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½Åªï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Òª
             }
         }
     }
@@ -202,6 +201,10 @@ public class PlayerController : MonoBehaviour
         {
             soulTimer = 0f;
         }
+    }
+    public void AddSoulAmount(int amount)
+    {
+        soulAmount = Mathf.Clamp(soulAmount+amount, 0f, maxSoulAmount);
     }
     #endregion
 }
