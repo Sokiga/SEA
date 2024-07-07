@@ -12,7 +12,6 @@ public class Drag : MonoBehaviour
     public bool isHoldingBox = false;
     public GameObject currentBox;
     public GameObject detectedBox;
-
     void Update()
     {
         HandleSpace();
@@ -56,6 +55,7 @@ public class Drag : MonoBehaviour
         {
             currentBox = detectedBox;
             currentBox.transform.SetParent(holdPoint);
+            currentBox.transform.GetComponent<Rigidbody>().useGravity = false;
             currentBox.transform.localPosition = new Vector3(holdDistance, 0, 0); // …Ë÷√œ‰◊”¿Î÷·µƒæ‡¿Î
             isHoldingBox = true;
             detectedBox = null;
@@ -67,6 +67,7 @@ public class Drag : MonoBehaviour
         if (currentBox != null)
         {
             currentBox.transform.SetParent(null);
+            currentBox.transform.GetComponent<Rigidbody>().useGravity = true;
             currentBox = null;
             isHoldingBox = false;
         }
