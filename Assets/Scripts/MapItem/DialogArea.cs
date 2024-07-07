@@ -2,20 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogArea : MonoBehaviour
+public class DialogArea : MonoBehaviour,IInteractable
 {
     public DialogManager dialogManager;
-    public int dialogIndexAtThisPoint;
+    public int dialogIndexBeforeFinishTask;      //完成任务前的对话
+    public int dialogIndexAfterFinishTask;       //完成任务后的对话
+    public bool isFinishTask;                    //是否完成任务
 
-    private void OnTriggerEnter(Collider other)
+    public void TriggerAction()
     {
-        if(other.CompareTag("Boat"))
-        {
-            Debug.Log("玩家进入剧情点");
-            dialogManager.dialogIndex = dialogIndexAtThisPoint;
-            dialogManager.gameObject.SetActive(true);
-            //dialogManager.ShowDialogRow();
-            Destroy(this.gameObject);
-        }
+
+            if (isFinishTask)
+            {
+                dialogManager.dialogIndex = dialogIndexAfterFinishTask;
+                dialogManager.gameObject.SetActive(true);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                dialogManager.dialogIndex = dialogIndexBeforeFinishTask;
+                dialogManager.gameObject.SetActive(true);
+            }
+              
     }
 }
