@@ -3116,6 +3116,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bc1a8cd1bf48f8041a8508dcb4e89f48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1911934058}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bc1a8cd1bf48f8041a8508dcb4e89f48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1911934062}
   m_SourcePrefab: {fileID: 100100000, guid: bc1a8cd1bf48f8041a8508dcb4e89f48, type: 3}
 --- !u!4 &1911934056 stripped
 Transform:
@@ -3200,6 +3203,7 @@ MonoBehaviour:
   rhymeObject: {fileID: 73907798}
   rhymeExtraSpeed: 5
   soulAmount: 0
+  maxSoulAmount: 2
   isInSoulTime: 0
   soulExtraSpeed: 4
   soulTimer: 0
@@ -3221,6 +3225,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sign: {fileID: 0}
+--- !u!114 &1911934062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911934057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3957290c8a5f784a91e8598532904da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1997612663
 PrefabInstance:
   m_ObjectHideFlags: 0
