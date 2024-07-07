@@ -70,14 +70,14 @@ public class PlayerController : MonoBehaviour
     }
     private void ApplyRotation()
     {
-        //float currentYAngle = transform.eulerAngles.y;
-        //float targetYAngle = rotationAngle;
-        //float smoothYAngle = Mathf.SmoothDampAngle(currentYAngle, targetYAngle, ref rotationSmoothSpeed, rotationSmoothTime);
+        float currentYAngle = transform.eulerAngles.y;
+        float targetYAngle = rotationAngle;
+        float smoothYAngle = Mathf.SmoothDampAngle(currentYAngle, targetYAngle, ref rotationSmoothSpeed, rotationSmoothTime);
 
-        //// 只修改 y 轴的旋转角度，保留 x 和 z 轴的旋转角度
-        //transform.eulerAngles = new Vector3(transform.eulerAngles.x, smoothYAngle, transform.eulerAngles.z);
+        // 只修改 y 轴的旋转角度，保留 x 和 z 轴的旋转角度
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, smoothYAngle, transform.eulerAngles.z);
 
-        transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref rotationSmoothSpeed, rotationSmoothTime);
+        //transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref rotationSmoothSpeed, rotationSmoothTime);
     }
 
     #endregion
